@@ -1,0 +1,49 @@
+body{
+    font-family: arial,sans-serif;
+}
+.center{
+    text-align: center;
+    padding-top: 15%;
+}
+
+.boarder{
+ 
+  padding-left:0px;
+  padding-top:4px;
+  padding-right:0px;
+  padding-bottom:9px;
+  border: 0.5px solid rgba(0, 0, 0, 0.454);
+  border-radius: 25px;
+  margin: auto;
+  text-align: center;
+  height: 25px;
+  width: 500px;
+  overflow: auto;
+  
+
+}
+
+.button{
+   
+    background-color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+    border-radius: 4px;
+    color: #5F6368;
+    font-size: 14px;
+    margin: 11px 4px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 36px;
+    min-width: 54px;
+    text-align: center;
+    
+}
+.menu{
+    color: #5F6368;
+    font-size: small;
+    margin-bottom: 24px;
+}
+
+a:link {
+    color: #5F6368;}
+
