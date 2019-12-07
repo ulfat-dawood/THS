@@ -105,7 +105,50 @@
         if(char == "a" ||char == "e" ||char == "i"||char =="o"||char =="u")
             console.log("it's a vowel");
         else
-            console.log("it's a consonan");
+            console.log("it's a consonant");
     }
-    fun10("u");
+   // fun10("u");
+    
+//11) Write a program to find the largest number among three numbers
+    var fun11=(a,b,c)=>{
+        if(a>b){
+           if(a>c){
+               return a;
+           }else{
+               return c;
+           }
+        }else if(b>a){
+            if(b>c)
+            return b;
+            else
+            return c; 
+        } 
+    } 
+    //console.log(fun11(10,20,5));
+    
+//12) Write a program to find the roots of a quadratic equation
+    var fun12=(a, b, c)=>{
+        var x = (-1 * b + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+        var y = (-1 * b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+        return x + " " + y;
+    }
+
+//13) Write a program to Check Whether the given year is a leap year or not
+var fun13=(year)=>{
+    var isLeap= (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+    if (isLeap==true) return "a leap year";
+    else return "not a leap year";
+ }
+    // console.log(fun13(2020));
+
+//14)Write a program to check whether a number is a positive number or negative number?
+ var fun14= (num)=>{
+     if (num==0) return "enter a nonzero number";
+     else if(num>0) return "positive";
+     else return "negative";
+ } 
+ //console.log(fun14((-9)));
+    
+//15)Write a program to find power of a number using recursion
+
      
