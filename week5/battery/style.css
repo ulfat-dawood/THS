@@ -1,0 +1,47 @@
+body{
+    text-align: center;
+}
+.center{
+    margin:auto;
+    text-align: center;
+    margin-top: 200px;
+    position: relative;
+
+}
+.boarder {
+    
+    border-radius: 25px;
+    width: 500px;
+    height: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border: 7px solid rgb(54, 52, 52);
+    margin:auto;
+    background-color:rgb(255, 255, 255);
+    position: relative;
+    }
+.battery{
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+
+    background-color:rgb(70, 22, 22);
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    left:0px;
+}
+
+.lil{
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    position: absolute;
+    background-color:rgb(54, 52, 52);
+    width: 55px;
+    height: 130px;
+    top:30px;
+    left:500px;
+    
+}
+#text{
+    font-family: 'Ubuntu', sans-serif;
+    color:rgb(54, 52, 52);
+}

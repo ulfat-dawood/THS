@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="msg">Current Battery Level Is: </h1>
+</body>
+<script>
+    var batteryLevel;
+        navigator.getBattery().then(function(battery) {
+  
+    var msg= document.getElementById("msg").innerHTML;
+    batteryLevel = (battery.level)*100;
+    document.getElementById("msg").innerHTML = msg+" "+batteryLevel+"%";
+    if(batteryLevel<10){
+        document.getElementById("msg").style.color="red";
+    }else if(batteryLevel<30){
+        document.getElementById("msg").style.color="orange";
+    }else{
+        document.getElementById("msg").style.color="green";
+    }
+
+
+  
+});
+    </script>
+</html>

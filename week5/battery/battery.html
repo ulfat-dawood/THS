@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+    <div class="center">
+        <div class="boarder">
+                
+           <div class="battery" id="battery">
+                <div class="lil"></div>
+           </div>
+        
+        </div>
+        
+        <h1 id="text"></h1>
+        
+    </div>
+</body>
+<script>
+    var batteryLevel;
+        navigator.getBattery().then(function(battery) {
+  
+    
+    battery500 = (battery.level)*500;
+    battery100 =(battery.level)*100;;
+
+    batteryLevel =battery500 + "px";
+    console.log(batteryLevel);
+    console.log(battery100);
+    
+    document.getElementById("text").innerHTML="Current Battery Level is: "+battery100+"%";
+    document.getElementById("battery").style.width =batteryLevel;
+    
+    if(battery500<50){
+        document.getElementById("battery").style.backgroundColor="red";
+    }else if(battery500<150){
+        document.getElementById("battery").style.backgroundColor="orange";
+    }else{
+        document.getElementById("battery").style.backgroundColor="green";
+    }
+
+
+  
+  });
+    
+</script>
+</html>
