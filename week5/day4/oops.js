@@ -28,8 +28,8 @@ function func1() {
 
  //Comparing two objects: 
  obj11={
-    a:1,
-    b:2
+    0:1,
+    1:2
  }
 
 obj22={
