@@ -8,5 +8,20 @@ function func1() {
     console.log(arguments[0]*arguments[1]*arguments[2]);
   }
   
-  func1(2, 3);
-  func1(2, 3, 5);
+  //func1(2, 3);
+  //func1(2, 3, 5);
+  function factorial(n) { 
+    var ans=1; 
+      
+    for (var i = 2; i <= n; i++) 
+        ans = ans * i; 
+    return ans; 
+} 
+  //Currying function: 
+  function func(x){
+    return function(y){
+      return factorial(x) * factorial(y);
+    };
+  }
+ console.log(func(2)(5));
+
