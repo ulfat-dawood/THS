@@ -25,15 +25,27 @@ function func1() {
   }
  //console.log(func(2)(5));
 
- obj1={
+
+ //Comparing two objects: 
+ obj11={
     a:1,
     b:2
  }
 
-obj2={
+obj22={
     a:1,
     b:2
  }
 
- console.log(obj1==obj2, obj1===obj2);
+ console.log(obj11==obj22, obj11===obj22); //returns false false. 
 
+ var compareObj=(obj1,obj2)=>{
+     if(obj1.length==obj2.length){
+        if(JSON.stringify(obj1) === JSON.stringify(obj2)){
+            return true;
+        }
+     }
+         
+     
+ }
+ console.log(compareObj(obj11,obj22));
