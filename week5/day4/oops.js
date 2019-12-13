@@ -23,5 +23,17 @@ function func1() {
       return factorial(x) * factorial(y);
     };
   }
- console.log(func(2)(5));
+ //console.log(func(2)(5));
+
+ obj1={
+    a:1,
+    b:2
+ }
+
+obj2={
+    a:1,
+    b:2
+ }
+
+ console.log(obj1==obj2, obj1===obj2);
 
