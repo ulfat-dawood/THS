@@ -21,12 +21,27 @@
         table+= "<tr>";
         for(var i=1; i<=10;i++){
             var value= i+j;
-            table+= "<td>"+value+"</td> ";
+            table+= "<td onclick='clicked(this)'id='"+value+"'>"+value+"</td> ";
         }
         table+="</tr>\n";
         
     }
 document.getElementById("myTable").innerHTML= table;
+var num;
+var clicked=(cell)=>{
+  
+    var selected = cell.innerHTML;
+    var multiples;
+    for(var i =1; i<=100; i++){
+    if(multiples>99)
+    break; 
+    multiples=(selected*i);
+    document.getElementById(multiples+"").innerHTML="*";
+   
+ 
+}
+    
+}
 
 </script>
 </html>
