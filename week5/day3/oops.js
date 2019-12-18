@@ -15,3 +15,7 @@ Person.prototype.hobby =()=>{
 Person.prototype.setAge=(age)=>{
     this.age=age; 
 }
+//_____________________________________________
+function Instructor(first, last, age, gender, interests,){
+
+}
