@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="goldenStyle.css">
 </head>
 <body>
-    <div class="six">
-        <div class="five">
-            <div class="four">
-                <div class="three">
-                    <div class="two">
-                        <div class="one"></div>
+    <div class="six" id="6">
+        <div class="five" id="5">
+            <div class="four" id="4">
+                <div class="three" id="3">
+                    <div class="two" id="2">
+                        <div class="one" id="1"></div>
                     </div>
                 </div>
             </div>
@@ -21,4 +21,12 @@
         
     </div>
 </body>
+<script>
+    for(var i=1; i<=6; i++){
+        var randomColor= "#"+((1<<24)*Math.random()|0).toString(16);
+        console.log(randomColor); 
+        document.getElementById(i+"").style.backgroundColor= randomColor;
+    }
+    
+</script>
 </html>
