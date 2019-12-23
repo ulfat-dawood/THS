@@ -53,7 +53,7 @@
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2>Current Weather</h2>
-          <img > <span>32</span>
+          <img src="" id="icon"/> <span id="temp">32</span>
         </div>
       </div>
     </div>
@@ -88,8 +88,9 @@
   <script src="js/scrolling-nav.js"></script>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js" type="text/JavaScript"></script>
 <script>
-  const axios = require('axios');
+//  const axios = require('axios');
 const key= "fd4786f2c75440289af619c9bfb869e4";
 const city = "Jeddah";
 var url= `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${key}`;
@@ -97,12 +98,17 @@ var url= `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${key}`
 var weather;
 var temp; 
 var arr= [];
+var iconURL;
 
 axios.get(url)
   .then(function (response) {
     // handle success
     weather= response.data.data[0].weather.description
+    var iconCode= response.data.data[0].weather.icon;
+    iconURL = `https://www.weatherbit.io/static/img/icons/${iconCode}.png`
+
     temp=response.data.data[0].temp;
+    func(temp,iconURL);
     for(var i=0; i<response.data.data.length;i++){
         arr.push(response.data.data[i].temp);
     } 
@@ -112,6 +118,11 @@ axios.get(url)
     console.log(error);
   })
   ;
+
+  var func=(temp,url)=>{
+    document.getElementById("temp").innerHTML=temp;
+    document.getElementById("icon").src=url;
+  }
 </script>
 
 </html>

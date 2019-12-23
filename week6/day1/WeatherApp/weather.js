@@ -17,7 +17,7 @@ axios.get(url)
     for(var i=0; i<response.data.data.length;i++){
         arr.push(response.data.data[i].temp);
     }
-    console.log(response.data.data[0].weather);
+    
     
   })
   .catch(function (error) {
