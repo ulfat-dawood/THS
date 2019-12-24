@@ -45,6 +45,27 @@
     <div class="container text-center">
       <h1>Welcome to Weather App</h1>
       <p class="lead">Please Select Your City:</p>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">COUNTRY
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li onclick="clicked(this)" >INDIA</li>
+              <li onclick="clicked(this)">SAUDI</li>
+
+          </ul>
+        </div>
+        <br>
+        <div class="d-inline dropdown">
+            <button class="d-inline btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">CITY
+            <span class="caret"></span></button>
+            <ul id="city" class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li  > </li>
+                
+  
+            </ul>
+          </div>
+
+        
     </div>
   </header>
 
@@ -90,17 +111,17 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js" type="text/JavaScript"></script>
 <script>
-//  const axios = require('axios');
-const key= "fd4786f2c75440289af619c9bfb869e4";
-const city = "Jeddah";
-var url= `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${key}`;
+  //  const axios = require('axios');
+  const key= "fd4786f2c75440289af619c9bfb869e4";
+  const cityName;
+  var url= `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${key}`;
 
-var weather;
-var temp; 
-var arr= [];
-var iconURL;
+  var weather;
+  var temp; 
+  var arr= [];
+  var iconURL;
 
-axios.get(url)
+ axios.get(url)
   .then(function (response) {
     // handle success
     weather= response.data.data[0].weather.description
@@ -112,12 +133,27 @@ axios.get(url)
     for(var i=0; i<response.data.data.length;i++){
         arr.push(response.data.data[i].temp);
     } 
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
-  ;
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    }
+  );
+
+  var clicked=(element)=>{
+    alert("yaho");
+    // var text;
+    // if(country.innerHTML=="INDIA"){
+    //   text="<li onclick='city(this)' >delhi</li> <li onclick='city(this)'>hyderabad</li> <lionclick='city(this)'>delhi</li>"
+    // }else{
+    //   text="<li onclick='city(this)' >jeddah</li> <li onclick='city(this)'>riyadh</li> <lionclick='city(this)'>dammam</li>"
+    // }
+    // document.getElementById("city").innerHTML="hi";
+    // var city=(element)=>{
+    //   cityName=element.innerHTML;
+    // }
+
+  }
 
   var func=(temp,url)=>{
     document.getElementById("temp").innerHTML=temp;
