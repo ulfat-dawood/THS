@@ -5,10 +5,12 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="Get Current Weather and Forecast">
+  <meta name="author" content="THS chohort (G) 2019">
 
   <title>Weather App</title>
+
+  <link rel="icon" href="favicon.png">
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,11 +23,17 @@
 
 function hello(country){
 
+  
+
     var text;
     if(country.innerHTML=="INDIA"){
-      text="<li onclick='city(this)' >delhi</li> <li onclick='city(this)'>hyderabad</li> <lionclick='city(this)'>Bengaluru</li>"
+      text="<li class='pl-2'><a href='#' onclick='city(this)'>DELHI</a></li><hr/>"+
+  "<li class='pl-2'><a href='#' onclick='city(this)'>HYDERABAD</a></li><hr/>"+
+  "<li class='pl-2'><a href='#' onclick='city(this)'>BENGALURU</a></li>";
     }else{
-      text="<li onclick='city(this)' >jeddah</li> <li onclick='city(this)'>riyadh</li> <lionclick='city(this)'>taif</li>"
+      text="<li class='pl-2'><a href='#' onclick='city(this)'>JEDDAH</a></li><hr/>"+
+  "<li class='pl-2'><a href='#' onclick='city(this)'>RIYADH</a></li><hr/>"+
+  "<li class='pl-2'><a href='#' onclick='city(this)'>ABHA</a></li>";
     }
     document.getElementById("city").innerHTML=text;
     
@@ -59,18 +67,21 @@ function hello(country){
     <div class="container text-center">
       <h1>Welcome to The Weather App</h1>
       <p class="lead">Please Select Your City:</p>
+
+
         <div class="dropdown">
-            <button class="d-inline btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">COUNTRY
+            <button class="btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">COUNTRY
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
-              <a ><li onclick="hello(this)" >INDIA</li></a>
-              <li onclick="hello(this)">SAUDI</li>
+              <li class="pl-2"><a href="#" onclick="hello(this)">INDIA</a></li>
+              <hr />
+              <li class="pl-2"><a href="#" onclick="hello(this)">SAUDI</a></li>
 
           </ul>
         </div>
         <br>
-        <div class="dropdown">
-            <button class="d-inline btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">CITY
+        <div class="dropdown ">
+            <button class=" btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">CITY
             <span class="caret"></span></button>
             <ul id="city" class="dropdown-menu" role="menu" aria-labelledby="menu1">
                 <li  > Select a Country</li>
@@ -88,8 +99,17 @@ function hello(country){
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2 class="display-3">Current Weather</h2>
-          <div >
-              <img width="250px"src="" id="icon"/> <span style="font-size:60px" id="temp"></span>
+          <hr/>
+          <div class="row">
+            <div calss="column">
+                <img width="250px"src="" id="icon" />
+            </div>
+            <div calss="column" style="padding-top: 30px;">
+                <div  class="pl-3" style="font-size:60px" id="temp"></div>
+                <div class="pl-3" style="font-size:60px" id="weather"></div>
+
+            </div>
+               
           </div>
         </div>
       </div>
@@ -100,7 +120,7 @@ function hello(country){
     <div class="container" style="text-align:left; margin-left: 0px;">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Forecast</h2>
+          <h2 class="display-3">Forecast</h2>
           <div >
               <canvas style="text-align:left" id="myChart"></canvas>
 
@@ -149,12 +169,12 @@ function hello(country){
   axios.get(url)
   .then(function (response) {
     // handle success
-    weather= response.data.data[0].weather.description
+    weather= response.data.data[0].weather.description;
     var iconCode= response.data.data[0].weather.icon;
     iconURL = `https://www.weatherbit.io/static/img/icons/${iconCode}.png`
 
     temp=response.data.data[0].temp;
-    func(temp,iconURL);
+    func(temp,iconURL,weather);
     for(var i=0; i<response.data.data.length;i++){
         arr.push(response.data.data[i].temp);
     } 
@@ -170,9 +190,10 @@ function hello(country){
     }
   );
 
-  var func=(temp,url)=>{
+  var func=(temp,url,weather)=>{
     document.getElementById("temp").innerHTML=temp+"°";
     document.getElementById("icon").src=url;
+    document.getElementById("weather").innerHTML=weather;
   }
 
   }
