@@ -17,6 +17,20 @@
   <link href="css/scrolling-nav.css" rel="stylesheet">
 
 </head>
+<script>
+
+function hello(country){
+
+    var text;
+    if(country.innerHTML=="INDIA"){
+      text="<li onclick='city(this)' >delhi</li> <li onclick='city(this)'>hyderabad</li> <lionclick='city(this)'>Bengaluru</li>"
+    }else{
+      text="<li onclick='city(this)' >jeddah</li> <li onclick='city(this)'>riyadh</li> <lionclick='city(this)'>taif</li>"
+    }
+    document.getElementById("city").innerHTML=text;
+    
+  }
+</script>
 
 <body id="page-top">
 
@@ -43,23 +57,23 @@
 
   <header class="bg-primary text-white">
     <div class="container text-center">
-      <h1>Welcome to Weather App</h1>
+      <h1>Welcome to The Weather App</h1>
       <p class="lead">Please Select Your City:</p>
         <div class="dropdown">
-          <button class="btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">COUNTRY
+            <button class="d-inline btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">COUNTRY
           <span class="caret"></span></button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-              <li onclick="clicked(this)" >INDIA</li>
-              <li onclick="clicked(this)">SAUDI</li>
+          <ul class="dropdown-menu">
+              <a ><li onclick="hello(this)" >INDIA</li></a>
+              <li onclick="hello(this)">SAUDI</li>
 
           </ul>
         </div>
         <br>
-        <div class="d-inline dropdown">
+        <div class="dropdown">
             <button class="d-inline btn btn-light dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">CITY
             <span class="caret"></span></button>
             <ul id="city" class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                <li  > </li>
+                <li  > Select a Country</li>
                 
   
             </ul>
@@ -73,18 +87,24 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Current Weather</h2>
-          <img src="" id="icon"/> <span id="temp">32</span>
+          <h2 class="display-3">Current Weather</h2>
+          <div >
+              <img width="250px"src="" id="icon"/> <span style="font-size:60px" id="temp"></span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="services" class="bg-light">
-    <div class="container">
+    <div class="container" style="text-align:left; margin-left: 0px;">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Forcast</h2>
+          <h2>Forecast</h2>
+          <div >
+              <canvas style="text-align:left" id="myChart"></canvas>
+
+          </div>
         </div>
       </div>
     </div>
@@ -109,19 +129,24 @@
   <script src="js/scrolling-nav.js"></script>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js" type="text/JavaScript"></script>
 <script>
-  //  const axios = require('axios');
-  const key= "fd4786f2c75440289af619c9bfb869e4";
-  const cityName;
-  var url= `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${key}`;
+  var city=(element)=>{
+    document.getElementById("temp").innerHTML=" ";
+    document.getElementById("icon").src="https://media.giphy.com/media/NzMn60baeGIOA/giphy.gif";
+    const key= "fd4786f2c75440289af619c9bfb869e4";
+    var cityName=element.innerHTML;
+    var url= `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=${key}`;
 
-  var weather;
-  var temp; 
-  var arr= [];
-  var iconURL;
+    var weather;
+    var temp; 
+    var arr= [];
+    var arrIcon=[];
+    var iconURL;
+    console.log(cityName);
 
- axios.get(url)
+  axios.get(url)
   .then(function (response) {
     // handle success
     weather= response.data.data[0].weather.description
@@ -133,6 +158,11 @@
     for(var i=0; i<response.data.data.length;i++){
         arr.push(response.data.data[i].temp);
     } 
+    for(var i=0; i<response.data.data.length;i++){
+        arrIcon.push(response.data.data[i].weather.icon);
+    } 
+    chart(arr, arrIcon);
+
     })
     .catch(function (error) {
       // handle error
@@ -140,25 +170,80 @@
     }
   );
 
-  var clicked=(element)=>{
-    alert("yaho");
-    // var text;
-    // if(country.innerHTML=="INDIA"){
-    //   text="<li onclick='city(this)' >delhi</li> <li onclick='city(this)'>hyderabad</li> <lionclick='city(this)'>delhi</li>"
-    // }else{
-    //   text="<li onclick='city(this)' >jeddah</li> <li onclick='city(this)'>riyadh</li> <lionclick='city(this)'>dammam</li>"
-    // }
-    // document.getElementById("city").innerHTML="hi";
-    // var city=(element)=>{
-    //   cityName=element.innerHTML;
-    // }
-
-  }
-
   var func=(temp,url)=>{
-    document.getElementById("temp").innerHTML=temp;
+    document.getElementById("temp").innerHTML=temp+"°";
     document.getElementById("icon").src=url;
   }
+
+  }
+  
 </script>
+<script>
+    //Plotting the data
+    function chart(temperature, icons){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        ctx.canvas.width = 1200;         //setting canvas height
+        ctx.canvas.height = 400;
+        var images = []  //Create an empty array for image objects
+        for(i in icons){
+            images.push(null)
+        }
+        
+        for(i in images){                    
+            images[i] = new Image()         //creating image objects
+            images[i].src = `https://www.weatherbit.io/static/img/icons/${icons[i]}.png`   //providing image src
+            images[i].height = "70"
+            images[i].width = "70"
+        }
+        date = new Date()  //making date labels for the chart
+        var dates = date.getDate()
+        temp_labels = []
+        for(i in temperature){
+            temp_labels.push(dates)
+            dates++
+        }
+        
+        console.log(temperature);           //checking if temperature array is available
+        console.log(icons);         //checking if icons array is available
+        console.log(images);        //checking if images array is available
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+            // The data for our dataset
+            data: {
+                labels: temp_labels,
+                datasets: [{
+                    label: 'Forecast',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointStyle: images,
+                    data: temperature,
+                }]
+            },
+            // Configuration options go here
+            options: {responsive: false,
+                    maintainAspectRatio: true,
+                legend : {
+                    display: false,
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display:false
+            },
+                    ticks: {
+                        beginAtZero: false,
+            }
+             }],
+                yAxes: [{
+                    gridLines: {
+                        display:false
+                    },   
+             }]
+              }
+            },
+            
+        });
+}
+    </script>
 
 </html>
