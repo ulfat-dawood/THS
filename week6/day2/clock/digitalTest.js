@@ -1,2 +1,2 @@
-var dt = new Date();
-         document.write("Time() : " + dt.getTime() ); 
+var tim = new Date();
+console.log(tim.getMinutes() ); 
