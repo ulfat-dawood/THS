@@ -5,8 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        @font-face {
+        font-family: myFont;
+        src: url(font/digital-7.ttf)format("ttf"),;}
+  
+        .body{
+            text-align: center;
+            
+        }
+	  .outer{
+          margin: auto auto auto auto;
+          border: 10px solid #303030;
+          border-radius: 25px;
+          width: 400px;
+          height: 170px;
+          position: absolute;
+	      top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0
+        }   
+        .inner{
+          background-color: #32CD32;
+          border-radius: 10px;
+          width: 380px;
+          height: 150px;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto; 
+        }    
+        .time{
+          font-family: myFont;
+          color: #303030;
+          font-size:150px;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto; 
+        }     
+
+    </style>
 </head>
 <body>
+    <div class="outer">
+        <div class="inner">
+            <div class="time">
+                clock
+            </div>
+        </div>
+        
+    </div>
     
 </body>
 </html>
