@@ -8,17 +8,17 @@
     <style>
         @font-face {
         font-family: myFont;
-        src: url(font/digital-7.ttf)format("ttf"),;}
+        src: url(digital-7.ttf);}
   
         .body{
             text-align: center;
             
         }
 	  .outer{
-          margin: auto auto auto auto;
+          margin: auto ;
           border: 10px solid #303030;
           border-radius: 25px;
-          width: 400px;
+          max-width: 700px;
           height: 170px;
           position: absolute;
 	      top:0;
@@ -29,7 +29,7 @@
         .inner{
           background-color: #32CD32;
           border-radius: 10px;
-          width: 380px;
+          max-width: 700px;
           height: 150px;
           position: absolute;
           top:0;
@@ -55,12 +55,30 @@
 <body>
     <div class="outer">
         <div class="inner">
-            <div class="time">
-                clock
+            <div class="time" id="time">
             </div>
         </div>
         
     </div>
     
 </body>
+<script>
+
+  var time=()=>{
+    var tim = new Date();
+    var min = tim.getMinutes();
+    var hr = tim.getHours();
+    var sec =tim.getSeconds();
+    var ampm= "am"; 
+
+    if(hr>12){
+        hr=hr-12;
+        ampm="pm";
+    }
+    document.getElementById("time").innerHTML =hr+":"+min+":"+sec+" "+ampm ; 
+
+        setTimeout(time,1000);
+}
+time();
+</script>
 </html>
