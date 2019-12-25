@@ -36,11 +36,11 @@ var student1= new Student("Mike","smith",3.5)
 
 function Instructor(firstName, lastName, salary, degree)
 {
-    Student.call(this, firstName, lastName,salary);
+    Employee.call(this, firstName, lastName,salary, degree);
 
     this.degree = degree;
 }
-var instructor1 = new Volunteer("jim", "robert", 3.3, 500);
+var instructor1 = new Instructor("jim", "robert", 3.3, 'PhD');
 //instructor1 can be Instructor, Employee, Person or Object:
 
 console.log(instructor1 instanceof Instructor);
@@ -55,6 +55,6 @@ console.log(instructor1 instanceof Object);
 //can be achived by using symboles or dropping "this" keyword 
 
 function Volunteer(firstName, lastName) {
-    this.FirstName = Symbol('firstName');
+    FirstName = Symbol('firstName');
     LastName = lastName;
 };
