@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
     <style>
         @font-face {
         font-family: myFont;
@@ -12,6 +13,7 @@
   
         .body{
             text-align: center;
+            
             
         }
 	  .outer{
@@ -21,10 +23,11 @@
           max-width: 600px;
           height: 170px;
           position: absolute;
-	      top:0;
-          bottom: 0;
-          left: 0;
-	      right: 0
+	      top: 0;
+          bottom:0;
+          left:0;
+	      right: 0;
+          margin-top:90px;
         }   
         .inner{
           background-color: rgb(75, 100, 44);
@@ -50,11 +53,106 @@
           margin: auto; 
           text-align: center;
           padding-top: 15px;
-        }     
+        }   
+        .timerOuter{
+          margin: auto ;
+          border: 10px solid #303030;
+          border-radius: 25px;
+          max-width: 420px;
+          height: 170px;
+          position: absolute;
+	      top:0px;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin-top: 350px;
+        }    
+        .timerInner{
+          background-color: rgb(75, 100, 44);
+          border-radius: 10px;
+          max-width: 400px;
+          height: 150px;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto; } 
+
+          .timerTime{
+          font-family: myFont;
+          color: #303030;
+          font-size:90px;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto; 
+          margin-top: 13px;
+          text-align: center;
+          }
+
+          .timerTimeButton{
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          color: #000000;
+          font-size:20px;
+          position: absolute;
+          top:90px;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto; 
+          text-align: center;
+          padding-top: 15px;
+}
+
+         .button {
+          background-color: #555555;
+          border: none;
+          font-size:20px;
+          border-radius: 25px;
+
+          }
+          .textBox{
+          background-color: #555555;
+          border: none;
+          font-size:20px;
+          width: 142px;
+          margin-right: 10px ;
+          border-radius: 10px;
+
+          }
+
+          .center{
+          background-color: #ffffff;
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto ;
+
+          }
+          .label{
+          position: absolute;
+          top:0;
+          bottom: 0;
+          left: 0;
+	      right: 0;
+          margin: auto ;
+          }
+          ::placeholder {
+  color: black;
+  opacity: 1;
+  padding-left: 5px; /* Firefox */
+}
+
 
     </style>
 </head>
 <body>
+<div class="center">
     <div class="outer">
         <div class="inner">
             <div class="time" id="time">
@@ -62,10 +160,29 @@
         </div>
     </div>
 
-
-    <div id="timer">
-        hi
+ <img width="200px" src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/5517/s300/ths-trans.png"/>
+    <div  class="timerOuter">
+            
+            <div class="timerInner">
+                    <div class="timerTime" id="timer">
+                    </div>
+                    <div class="timerTimeButton" id="append">
+                             <input type="number" min="1" max="120" placeholder="Enter Seconds" class="textBox"type="text" id="textBox" value="">
+                                <button class="button" onclick="myFunction()" >Set Timer</button>
+                                
+                    </div>
+                    
+            </div>
     </div>
+</div>
+
+    <audio id="myAudio" >
+            <source src="sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="myAudioEnd" >
+            <source src="endSound.mp3" type="audio/mpeg">
+    </audio>
     
 </body>
 <script>
@@ -87,9 +204,47 @@
 }
 time();
 
-
-for(var i=0; i<=6;i++){
-    document.getElementById("timer").innerHTML =i;
-}
 </script>
+
+
+<script>
+    var x = document.getElementById("myAudio");
+    var end = document.getElementById("myAudioEnd");
+    var append = document.getElementById("append").innerHTML;
+
+var myFunction=()=>{
+    x.play();
+    x.loop = true;
+    var time= (new Date()).setHours(0,0,0,0);
+var inpput = document.getElementById('textBox').value ;
+var future= time+(inpput*1000);
+var decrement
+
+
+var func=()=>{
+    //time's up
+    if(inpput==1){
+        x.pause();
+        clearInterval(interval);
+        end.play();
+        end.loop=true;
+        document.getElementById("append").innerHTML= append+"<button class='button' onclick='stopIt()' >Done!</button>";
+    }
+    
+    future= future-1000;
+    var down= new Date(future);
+    document.getElementById("timer").innerHTML =down.getMinutes()+":"+down.getSeconds();
+    inpput--;
+}
+var interval= setInterval(func,1000);
+}
+
+var stopIt=()=>{
+    end.pause();
+    document.getElementById("append").innerHTML= append;
+}
+
+
+</script>
+
 </html>

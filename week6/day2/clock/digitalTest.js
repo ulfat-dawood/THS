@@ -1,9 +1,14 @@
 var time= (new Date()).setHours(0,0,0,0);
 var future= time+10000;
-console.log(new Date(time).toString());
+var decrement
+var inpput =10;
 
 var func=()=>{
+    if(inpput<0)
+    clearInterval(interval);
     
-    cz(new Date(future -=1000));
+    future= future-1000;
+    console.log(new Date(future).toString());
+    inpput--;
 }
-setInterval(func,1000);
+var interval= setInterval(func,1000);
