@@ -1,15 +1,15 @@
 var func= (input)=>{
-    var axios = new Promise(function(resolve,reject){
-        if(typeof input == "string"){
-            resolve("it is string");
+    return new Promise(function(resolve,reject){
+        if(input == "url"){
+            resolve("valid url");
         }
-        else if(typeof input == "number"){
-            resolve("it is number");
+        else if( typeof input == "number"){
+            resolve("url must be string");
         }
         else{
             reject("invalid");
         }
     });
 }
-
-module.exports = {func}; 
+ 
+module.exports = func; 
