@@ -13,11 +13,13 @@ var input=()=>{
     return new Promise(function(resolve,reject){
         
         cityName = readline.question(question);
-        
-        resolve(cityName);
+        var url= `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}`
+        resolve(url);
     })
 }
 
 input()
-
+.then(function(url){
+   console.log(url); 
 })
+
