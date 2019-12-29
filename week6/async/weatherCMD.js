@@ -23,7 +23,7 @@ let respose=-1;
    
    var url= `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`
    
-   axios.get(url)
+  axios.get(url)
   .then(function (response) {
     // handle success
     console.log(response.data);
@@ -31,7 +31,7 @@ let respose=-1;
   .catch(function (error) {
     // handle error
     console.log(error);
-  })
-  ;
+  });
   
   
+}
