@@ -12,24 +12,26 @@ let respose=-1;
 
 var input=()=>{
     return new Promise(function(resolve,reject){
-        
+        var url;
         cityName = readline.question(question);
-        var url= `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}`
+        if(cityName == "q"){
+            url="q";
+        }
+        else{url= `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}`}
         resolve(url);
     })
 }
 
 
 
-async function askMom() {
+async function func() {
     try {
         
         do{
             let url = await input();
             if(url == "q") break;
             let message = await axios.get(url);
-            console.log(message);
-            var url2 = url;
+            console.log("\n"+message.data.weather[0].description);
         }while(true)
         
 
@@ -44,11 +46,8 @@ async function askMom() {
 }
 
 (async () => {
-    await askMom();
+    await func();
 })();
 
-// input()
-// .then(function(url){
-//    console.log(url); 
-// })
+
 
