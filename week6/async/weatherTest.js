@@ -33,21 +33,15 @@ async function func() {
             let message = await axios.get(url);
             console.log("\n"+message.data.weather[0].description);
         }while(true)
-        
-
-        
-
-        
-        
     }
     catch (error) {
         console.log(error.message);
     }
 }
 
-(async () => {
-    await func();
-})();
+
+func();
+
 
 
 
