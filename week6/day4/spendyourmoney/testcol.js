@@ -2,10 +2,10 @@
     
 var arr=[
     {
-        imgurl: "img/persian_cat.jpg",
-        name: "Persian Cat",
+        imgurl: "img/cat.jpg",
+        name: "Cat",
         desc: 1,
-        price: 1000,
+        price: 200,
         qty:0
     }  ,
     {
@@ -21,16 +21,89 @@ var arr=[
         desc: 1,
         price: 2,
         qty:0
-    } 
+    } ,
+    {
+        imgurl:"img/diaper" ,
+        name: "Diaper" ,
+        desc: 1,
+        price: 0.14,
+        qty:0
+    } ,
+    {
+
+        imgurl:"nailCutter.jpeg" ,
+        name: "Nail Cutter" ,
+        desc: 1,
+        price: 2 ,
+        qty:0
+    } ,
+
+    {imgurl:"burger.jpeg" ,
+    name: "Burger" ,
+    desc: 1,
+    price: 5,
+    qty:0
+    } ,
+
+    {imgurl:"img/bottle.jpeg" ,
+    name: "Water Bottle 1L" ,
+    desc: 1,
+    price: 0.50,
+    qty:0
+    } ,
+
+    {imgurl:"img/bulb.jpeg" ,
+    name: "Light Bulb" ,
+    desc: 1,
+    price:3 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/pin.jpeg" ,
+    name: "Bobby Pin" ,
+    desc: 1,
+    price: 0.10 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/dog.jpeg" ,
+    name: "Dog" ,
+    desc: 1,
+    price: 50 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/ants.jpg" ,
+    name: "Ant colony with a queen" ,
+    desc: 1,
+    price: 30,
+    qty:0
+    } ,
+
+    {imgurl:"img/bag.jpeg" ,
+    name: "Jackie Crocodile bag" ,
+    desc: 1,
+    price: 37000,
+    qty:0
+    } ,
 ]   
 
 
 
-for(i=0;i<3;i++){
-    console.log(cardText)
+var tag;
+for(var i=0;i<arr.length/3;i++){
+   tag= `<div class="row">`
+    
+
+    tag+=`</div>`
 }
 
-var cardText=          `<div class="col-sm">
+
+
+
+
+
+console.log(`<div class="col-sm">
                                 <div class="card " style="width: 20rem; line-height: 40%;  ">
                                     <img src="${arr[i].imgurl}"
                                         class="card-img-top" alt="...">
@@ -49,5 +122,5 @@ var cardText=          `<div class="col-sm">
                                     </div>
                                 </div>
                         </div>
-                </div>`
+                </div>`)
         

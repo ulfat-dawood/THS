@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spend Your Money</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</head>
+
+<body style="height:1500px">
+    <div class="sticky-top">
+        <nav class="navbar navbar-light shadow-sm sticky-top w-100" style='background-color: #ecf2f7'>
+            <div class="container-fluid"></div>
+            <div class="navbar-header">
+                <b><a class="navbar-brand text-dark" href="#">Spend Your Money</a></b>
+            </div>
+            <div class="m-auto">
+                <b><span id="username" class="h3">Raphael has :</span>
+                <span id="amount" class="h3">$100000</span><b>  
+            </div>          
+            <img class="pr-0" src="img/raphael.png" width="50px" height="50px">
+        </nav>
+        <div class="progress position-static">
+            <div class="progress-bar progress-bar-striped" style="width:40%"></div>
+        </div>
+    </div>
+
+    <div class="container " id="container">
+        
+    </div>
+
+
+
+
+        
+
+
+        
+
+
+
+
+
+
+ 
+
+
+</body>
+<script>
+var arr=[
+    {
+        imgurl: "img/cat.jpg",
+        name: "Cat",
+        desc: 1,
+        price: 200,
+        qty:0
+    }  ,
+    {
+        imgurl:"img/icecream.jpg" ,
+        name: "Black Dianond Ice-cream",
+        desc: 1,
+        price: 25000,
+        qty:0
+    } , 
+    {
+        imgurl:"img/toilet_paper.png" ,
+        name: "Toilet Paper" ,
+        desc: 1,
+        price: 2,
+        qty:0
+    } ,
+    {
+        imgurl:"img/diaper.jpg" ,
+        name: "Diaper" ,
+        desc: 1,
+        price: 0.14,
+        qty:0
+    } ,
+    {
+
+        imgurl:"img/nailCutter.jpeg" ,
+        name: "Nail Cutter" ,
+        desc: 1,
+        price: 2 ,
+        qty:0
+    } ,
+
+    {imgurl:"img/burger.jpeg" ,
+    name: "Burger" ,
+    desc: 1,
+    price: 5,
+    qty:0
+    } ,
+
+    {imgurl:"img/bottle.jpeg" ,
+    name: "Water Bottle 1L" ,
+    desc: 1,
+    price: 0.50,
+    qty:0
+    } ,
+
+    {imgurl:"img/bulb.jpeg" ,
+    name: "Light Bulb" ,
+    desc: 1,
+    price:3 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/pin.jpeg" ,
+    name: "Bobby Pin" ,
+    desc: 1,
+    price: 0.10 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/dog.jpeg" ,
+    name: "Dog" ,
+    desc: 1,
+    price: 50 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/ants.jpg" ,
+    name: "Ant colony with a queen" ,
+    desc: 1,
+    price: 30,
+    qty:0
+    } ,
+
+    {imgurl:"img/bag.jpeg" ,
+    name: "Jackie Crocodile bag" ,
+    desc: 1,
+    price: 37000,
+    qty:0
+    } ,
+]   
+
+
+var i = 0;
+var tag="";
+for(var n=0;n<arr.length/3;n++){
+   tag+= `<div class="row pt-5">`
+    for(var j=0; j<3; j++){
+        
+        tag+=`<div class="col-sm">
+                                <div class="card " style="width: 20rem; line-height: 70%;  ">
+                                    <img src="${arr[i].imgurl}"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${arr[i].name}</h5>
+                                        <p class="desc ">You can buy ${arr[i].desc} ${arr[i].name}\s</p>
+                                        <h2 class="card-text">$${arr[i].price}</h2>
+                                        <div class="btn-group">
+                                            <button type="button"
+                                                class="btn btn-outline-success btn-sm btn-outline-secondary" style="outline: none;">Buy</button>
+                                            <button type="button"
+                                                class="btn btn-outline-danger btn-sm btn-outline-secondary">Sell</button>
+                                        </div>
+                                        <input type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
+                                            name="text1" style="width: 80px;">
+                                    </div>
+                                </div>
+                        </div>`
+                
+        i++;
+    }
+
+    tag+=`</div>`
+}
+ 
+var container= document.getElementById("container").innerHTML= tag;
+
+</script>
+
+</html>
