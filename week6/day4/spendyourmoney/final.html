@@ -35,30 +35,13 @@
             <img class="pr-0" src="img/raphael.png" width="50px" height="50px">
         </nav>
         <div class="progress position-static">
-            <div class="progress-bar progress-bar-striped" style="width:40%"></div>
+            <div id="pb" class="progress-bar progress-bar-striped" style="width:40%; background-color: green;"></div>
         </div>
     </div>
 
     <div class="container " id="container">
         
     </div>
-
-
-
-
-        
-
-
-        
-
-
-
-
-
-
- 
-
-
 </body>
 <script>
 var arr=[
@@ -149,7 +132,6 @@ var arr=[
     } ,
 ]   
 
-
 var i = 0;
 var tag="";
 for(var n=0;n<arr.length/3;n++){
@@ -157,21 +139,21 @@ for(var n=0;n<arr.length/3;n++){
     for(var j=0; j<3; j++){
         
         tag+=`<div class="col-sm">
-                                <div class="card " style="width: 20rem; line-height: 70%;  ">
+                                <div class="card" style="width: 20rem; line-height: 70%;  ">
                                     <img src="${arr[i].imgurl}"
                                         class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${arr[i].name}</h5>
-                                        <p class="desc ">You can buy ${arr[i].desc} ${arr[i].name}\s</p>
-                                        <h2 class="card-text">$${arr[i].price}</h2>
-                                        <div class="btn-group">
-                                            <button type="button"
+                                    <div class="card-body"  id="${i}">
+                                        <h5 id="15" class="card-title">${arr[i].name}</h5>
+                                        <p  id="14" class="desc ">You can buy ${arr[i].desc} ${arr[i].name}\s</p>
+                                        <h2 id="13" class="card-text">$${arr[i].price}</h2>
+                                        <div id="12" class="btn-group">
+                                            <button type="button" onclick="buy(this)"
                                                 class="btn btn-outline-success btn-sm btn-outline-secondary" style="outline: none;">Buy</button>
-                                            <button type="button"
+                                            <button id="sell" type="button" onclick="sell(this)"
                                                 class="btn btn-outline-danger btn-sm btn-outline-secondary">Sell</button>
                                         </div>
-                                        <input type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
-                                            name="text1" style="width: 80px;">
+                                        <input id="input" type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
+                                            name="text1" style="width: 80px; "value=''>
                                     </div>
                                 </div>
                         </div>`
@@ -183,6 +165,49 @@ for(var n=0;n<arr.length/3;n++){
 }
  
 var container= document.getElementById("container").innerHTML= tag;
+
+</script>
+<!--buy logic-->
+<script>
+const balance= 10000; 
+var bal=balance;
+document.getElementById("sell").disabled = true;
+progressBar();
+document.getElementById("amount").innerHTML="$"+bal;
+
+function buy(element){
+    var i=Number(element.parentNode.parentNode.id);
+    arr[i].qty +=1 ;
+    bal -= arr[i].price;
+    document.getElementById("amount").innerHTML="$"+bal;
+    //update qty box
+    element.parentNode.parentNode.children[4].value=arr[i].qty;
+    //enable sell:
+    element.parentNode.parentNode.children[4].value=arr[i].qty;
+    progressBar();
+}
+
+function sell(element){
+    var i=Number(element.parentNode.parentNode.id);
+    arr[i].qty -= 1 ;
+    bal += arr[i].price;
+    document.getElementById("amount").innerHTML="$"+bal;
+    //update qty box
+    element.parentNode.parentNode.children[4].value=arr[i].qty;
+    progressBar();
+}
+
+
+//Progress Bar:
+function progressBar(){
+    var percent= (bal/balance)*100;
+    document.getElementById("pb").style.width=percent+"%";
+    if(percent<10){
+        document.getElementById("pb").style.backgroundColor="red"; 
+    }else if(percent<30){
+        document.getElementById("pb").style.backgroundColor="orange"; 
+    }
+}
 
 </script>
 

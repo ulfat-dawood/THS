@@ -53,8 +53,8 @@
                         <h2 class="card-text">$5</h2>
                         <div class="btn-group">
                             <button type="button"
-                                class="btn btn-outline-success btn-sm btn-outline-secondary">Buy</button>
-                            <button type="button"
+                                class= "btn btn-outline-success btn-sm btn-outline-secondary">Buy</button>
+                            <button type="button" onclick="buy(this)"
                                 class="btn btn-outline-danger btn-sm btn-outline-secondary">Sell</button>
                         </div>
                         <input type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
@@ -149,5 +149,11 @@
 
 
 </body>
+<script>
+ function buy(element){
+     element.innerHTML= "HI"
+ }
+
+</script>
 
 </html>
