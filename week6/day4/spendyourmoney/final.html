@@ -148,12 +148,12 @@ for(var n=0;n<arr.length/3;n++){
                                         <h2 id="13" class="card-text">$${arr[i].price}</h2>
                                         <div id="12" class="btn-group">
                                             <button type="button" onclick="buy(this)"
-                                                class="btn btn-outline-success btn-sm btn-outline-secondary" style="outline: none;">Buy</button>
-                                            <button id="sell" type="button" onclick="sell(this)"
-                                                class="btn btn-outline-danger btn-sm btn-outline-secondary">Sell</button>
+                                                class="btn btn-outline-success btn-sm btn-outline-secondary btn-buy" style="outline: none;">Buy</button>
+                                            <button  type="button" onclick="sell(this)" name="sell"
+                                                class="btn btn-outline-danger btn-sm btn-outline-secondary btn-sell">Sell</button>
                                         </div>
-                                        <input id="input" type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
-                                            name="text1" style="width: 80px; "value=''>
+                                        <input id="input" oninput="update_qty(this)" type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
+                                            name="text1" style="width: 80px;" value='' min="0" max="100">
                                     </div>
                                 </div>
                         </div>`
@@ -167,14 +167,41 @@ for(var n=0;n<arr.length/3;n++){
 var container= document.getElementById("container").innerHTML= tag;
 
 </script>
-<!--buy logic-->
+
+
 <script>
 const balance= 10000; 
 var bal=balance;
-document.getElementById("sell").disabled = true;
-progressBar();
-document.getElementById("amount").innerHTML="$"+bal;
 
+progressBar();
+
+//disable sell:
+var sell_butts = [].slice.call(document.getElementsByClassName("btn-sell"));
+var buy_butts = [].slice.call(document.getElementsByClassName("btn-buy"));
+
+
+//Disabling sell at the start
+sell_butts.map(x => (x.disabled = true))
+
+function button_state(){
+
+    var sell_butts = [].slice.call(document.getElementsByClassName("btn-sell"));
+    var buy_butts = [].slice.call(document.getElementsByClassName("btn-buy"));
+
+    //Check if sell is valid for card
+    sell_butts.map(x => {
+        x.disabled = arr[x.parentNode.parentNode.id].qty < 1 ? true : false
+        })
+
+    //Check if buy is valid for card
+    buy_butts.map(x => {
+        x.disabled = arr[x.parentNode.parentNode.id].price > bal ? true : false
+        })
+    
+}
+
+//reset PB:
+document.getElementById("amount").innerHTML="$"+bal;
 function buy(element){
     var i=Number(element.parentNode.parentNode.id);
     arr[i].qty +=1 ;
@@ -183,8 +210,9 @@ function buy(element){
     //update qty box
     element.parentNode.parentNode.children[4].value=arr[i].qty;
     //enable sell:
-    element.parentNode.parentNode.children[4].value=arr[i].qty;
+    element.parentNode.parentNode.children[3].children[1].disabled = false;
     progressBar();
+    button_state();
 }
 
 function sell(element){
@@ -195,6 +223,7 @@ function sell(element){
     //update qty box
     element.parentNode.parentNode.children[4].value=arr[i].qty;
     progressBar();
+    button_state();
 }
 
 
@@ -208,6 +237,26 @@ function progressBar(){
         document.getElementById("pb").style.backgroundColor="orange"; 
     }
 }
+
+//`Updating Quantity
+function update_qty(element){
+    arr[element.parentNode.id].qty = element.value;
+    arr_price = arr.map(x=> x.qty*x.price);
+    sum = arr_price.reduce((acc, curr) => curr + acc)
+    bal = balance - sum;
+
+    document.getElementById("amount").innerHTML="$"+bal;
+    progressBar();
+    button_state();
+    //setMax();
+}
+
+function setMax(){
+    arr.map((x,i) => {
+        document.getElementById(i).children[4].max = (bal/x.price)
+        })
+}
+
 
 </script>
 
