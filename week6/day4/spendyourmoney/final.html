@@ -153,7 +153,7 @@ for(var n=0;n<arr.length/3;n++){
                                                 class="btn btn-outline-danger btn-sm btn-outline-secondary btn-sell">Sell</button>
                                         </div>
                                         <input id="input" oninput="update_qty(this)" type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
-                                            name="text1" style="width: 80px;" value='' min="0" max="100">
+                                            name="text1" style="width: 80px;" value='' min="0" >
                                     </div>
                                 </div>
                         </div>`
@@ -231,30 +231,40 @@ function sell(element){
 function progressBar(){
     var percent= (bal/balance)*100;
     document.getElementById("pb").style.width=percent+"%";
-    if(percent<10){
+    if(percent<=10){
         document.getElementById("pb").style.backgroundColor="red"; 
-    }else if(percent<30){
+    }else if(percent<=30){
         document.getElementById("pb").style.backgroundColor="orange"; 
+    }else if(percent>30){
+        document.getElementById("pb").style.backgroundColor="green";
     }
+    
 }
 
 //`Updating Quantity
 function update_qty(element){
+    setMax();
     arr[element.parentNode.id].qty = element.value;
     arr_price = arr.map(x=> x.qty*x.price);
     sum = arr_price.reduce((acc, curr) => curr + acc)
     bal = balance - sum;
-
     document.getElementById("amount").innerHTML="$"+bal;
     progressBar();
     button_state();
-    //setMax();
+    
 }
 
 function setMax(){
+    const curr_bal=bal;
     arr.map((x,i) => {
-        document.getElementById(i).children[4].max = (bal/x.price)
+        
+        ele = document.getElementById(i).children[4]
+        if (ele.value > (curr_bal/x.price)) {
+            console.log(curr_bal, " ", curr_bal/x.price)
+            ele.value = Math.floor(curr_bal/x.price)
+        }
         })
+        //if (ele.value<0){ele.value = 0 }
 }
 
 
