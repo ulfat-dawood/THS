@@ -29,10 +29,10 @@
                 <b><a class="navbar-brand text-dark" href="#">Spend Your Money</a></b>
             </div>
             <div class="m-auto">
-                <b><span id="username" class="h3">Raphael has :</span>
-                <span id="amount" class="h3">$100000</span><b>  
+                <b><span id="username" class="h3"></span>
+                <span id="amount" class="h3"></span><b>  
             </div>          
-            <img class="pr-0" src="img/raphael.png" width="50px" height="50px">
+            <img id="userAvatar" class="pr-0" src="" width="50px" height="50px">
         </nav>
         <div class="progress position-static">
             <div id="pb" class="progress-bar progress-bar-striped" style="width:40%; background-color: green;"></div>
@@ -170,7 +170,14 @@ var container= document.getElementById("container").innerHTML= tag;
 
 
 <script>
-const balance= 10000; 
+avatar = localStorage['img'];
+name = localStorage['name'];
+const balance= localStorage['bal']; 
+
+document.getElementById('userAvatar').src = `img/${avatar}.png`;
+document.getElementById('username').innerHTML = `${name} has`;
+//document.getElementById().innerHTML = avatar;
+
 var bal=balance;
 
 progressBar();
