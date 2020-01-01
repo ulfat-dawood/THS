@@ -47,9 +47,9 @@
                 </div>
             </div>
 
-				<form class="login100-form validate-form">
-                        <span class="login100-form-title">
-                                Got too much money?
+				<form class="login100-form validate-form " >
+                        <span class="login100-form-title display-1">
+                                How many cats can YOU buy?
                             </span>
 
 					<div class="wrap-input100 validate-input" data-validate = "A man must have a name">
@@ -72,7 +72,7 @@
 					
 					<div class="container-login100-form-btn">
 						<button onclick="next()" class="login100-form-btn" style="background-color: rgb(116, 221, 195);">
-                                <a href="final.html">Start Spending</a>
+                                Start Spending
 						</button>
 					</div>
 
@@ -110,6 +110,13 @@
 function next(){
     localStorage["name"]=name = document.getElementById("name").value; 
     localStorage["bal"]=bal = document.getElementById("bal").value;
+	var bb= document.getElementById("bal").value;
+	var nn= document.getElementById("name").value;
+	if(true){
+		console.log(bb);
+		window.location.href = 'final.html';
+	}
+	
 }
 
 
