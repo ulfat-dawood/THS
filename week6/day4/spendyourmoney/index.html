@@ -47,13 +47,13 @@
                 </div>
             </div>
 
-				<form class="login100-form validate-form " >
+				<form  class="login100-form validate-form " >
                         <span class="login100-form-title display-1">
                                 How many cats can YOU buy?
                             </span>
 
-					<div class="wrap-input100 validate-input" data-validate = "A man must have a name">
-						<input id="name" class="input100" type="text" name="name" placeholder="What do I call you?">
+						<div class="wrap-input100 validate-input" data-validate = "A man must have a name">
+							<input id="name" class="input100" type="text" placeholder="What do I call you?">
 						
 						<span class="symbol-input100">
 							<i class="fa fa-id-badge" aria-hidden="true"></i>
@@ -61,17 +61,16 @@
                     </div>
                     
                     
-
 					<div class="wrap-input100 validate-input" data-validate = "Turn away if you're broke">
-						<input id="bal" class="input100" type="number" min="0" name="pass" placeholder="How much you got?">
+						<input id="bal" class="input100" type="number" min="0" placeholder="How much you got?">
 						
 						<span class="symbol-input100">
 							<i class="fa fa-dollar" aria-hidden="true"></i>
 						</span>
 					</div>
 					
-					<div class="container-login100-form-btn">
-						<button onclick="next()" class="login100-form-btn" style="background-color: rgb(116, 221, 195);">
+					<div onclick="next()" class="container-login100-form-btn">
+						<button class="login100-form-btn" style="background-color: rgb(116, 221, 195);">
                                 Start Spending
 						</button>
 					</div>
@@ -108,16 +107,11 @@
 
 
 function next(){
-    localStorage["name"]=name = document.getElementById("name").value; 
-    localStorage["bal"]=bal = document.getElementById("bal").value;
-	var bb= document.getElementById("bal").value;
-	var nn= document.getElementById("name").value;
-	console.log(bb && nn);
-	if(false){
-		console.log(bb);
-		//location.replace('final.html')
+    localStorage["name"] = document.getElementById("name").value; 
+    localStorage["bal"] = document.getElementById("bal").value;
+	if(localStorage["bal"].length > 0){
+		window.location.replace("final.html");
 	}
-	
 }
 
 

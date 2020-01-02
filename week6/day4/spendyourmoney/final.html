@@ -172,13 +172,13 @@ var container= document.getElementById("container").innerHTML= tag;
 <script>
 avatar = localStorage['img'];
 name = localStorage['name'];
-const balance= localStorage['bal']; 
+const balance= 100000//localStorage['bal']; 
 
-document.getElementById('userAvatar').src = `img/${avatar}.png`;
-document.getElementById('username').innerHTML = `${name} has`;
+document.getElementById('userAvatar').src ='img/4.png' //`img/${avatar}.png`;
+document.getElementById('username').innerHTML ='Ulfat Dawood has :' //`${name} has`;
 //document.getElementById().innerHTML = avatar;
 
-var bal=balance;
+var bal= balance;
 
 progressBar();
 
