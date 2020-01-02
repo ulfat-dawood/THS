@@ -6,9 +6,12 @@ const config = require("config");
 //if there is any environment variable available then use it otherwise 
 const port =process.env.PORT || config.get("PORT")
 
-app.get("/", (req,res)=>{
-    res.send("It's live");
-});
+// app.get("/", (req,res)=>{
+//     res.send("It's live");
+// });
+
+//Serving static files:
+app.use(express.static("views"));
 
 app.listen(port, ()=>{
     console.log(`Server started at ${port}`)
