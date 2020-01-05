@@ -1,8 +1,11 @@
 var express = require('express');
+const serveIndex = require('serve-index');
 var app = express(); 
 var port = process.env.PORT || "1234"; 
 
+
 //access files in 'public' folder
+app.use(serveIndex('views'));
 app.use(express.static('views'));
 
 //localhost/home
