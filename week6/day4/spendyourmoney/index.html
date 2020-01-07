@@ -52,15 +52,15 @@
                                 How many cats can YOU buy?
                             </span>
 
-						<div class="wrap-input100 validate-input" data-validate = "A man must have a name">
-							<input id="name" class="input100" type="text" placeholder="What do I call you?">
+                    
+                    <div class="wrap-input100 validate-input" data-validate = "A man must have a name">
+						<input id="name" class="input100" type="text" min="0" placeholder="What do I call you?">
 						
 						<span class="symbol-input100">
 							<i class="fa fa-id-badge" aria-hidden="true"></i>
 						</span>
-                    </div>
-                    
-                    
+					</div>
+
 					<div class="wrap-input100 validate-input" data-validate = "Turn away if you're broke">
 						<input id="bal" class="input100" type="number" min="0" placeholder="How much you got?">
 						
@@ -106,12 +106,13 @@
 //capture values:  
 
 
-function next(){
+var next=()=>{
+	window.location.replace("final.html");
+	alert("hi")
     localStorage["name"] = document.getElementById("name").value; 
     localStorage["bal"] = document.getElementById("bal").value;
-	if(localStorage["bal"].length > 0){
-		window.location.replace("final.html");
-	}
+	// if(localStorage["bal"].length > 0){
+	// }
 }
 
 
