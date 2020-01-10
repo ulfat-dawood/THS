@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spend Your Money</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</head>
+
+<body style="height:1500px">
+    <div class="sticky-top">
+        <nav class="navbar navbar-light shadow-sm sticky-top w-100" style='background-color: #ecf2f7'>
+            <div class="container-fluid"></div>
+            <div class="navbar-header">
+                <b><a class="navbar-brand text-dark" href="#">Spend Your Money</a></b>
+            </div>
+            <div class="m-auto">
+                <b><span id="username" class="h3"></span>
+                <span id="amount" class="h3"></span><b>  
+            </div>          
+            <img id="userAvatar" class="pr-0" src="" width="50px" height="50px">
+        </nav>
+        <div class="progress position-static">
+            <div id="pb" class="progress-bar progress-bar-striped" style="width:40%; background-color: green;"></div>
+        </div>
+    </div>
+
+    <div class="container " id="container">
+        
+    </div>
+</body>
+<script>
+var arr=[
+    {
+        imgurl: "img/cat.jpg",
+        name: "Cat",
+        desc: 1,
+        price: 200,
+        qty:0
+    }  ,
+    {
+        imgurl:"img/icecream.jpg" ,
+        name: "Black Dianond Ice-cream",
+        desc: 1,
+        price: 25000,
+        qty:0
+    } , 
+    {
+        imgurl:"img/toilet_paper.png" ,
+        name: "Toilet Paper" ,
+        desc: 1,
+        price: 2,
+        qty:0
+    } ,
+    {
+        imgurl:"img/diaper.jpg" ,
+        name: "Diaper" ,
+        desc: 1,
+        price: 0.14,
+        qty:0
+    } ,
+    {
+
+        imgurl:"img/nailCutter.jpeg" ,
+        name: "Nail Cutter" ,
+        desc: 1,
+        price: 2 ,
+        qty:0
+    } ,
+
+    {imgurl:"img/burger.jpeg" ,
+    name: "Burger" ,
+    desc: 1,
+    price: 5,
+    qty:0
+    } ,
+
+    {imgurl:"img/bottle.jpeg" ,
+    name: "Water Bottle 1L" ,
+    desc: 1,
+    price: 0.50,
+    qty:0
+    } ,
+
+    {imgurl:"img/bulb.jpeg" ,
+    name: "Light Bulb" ,
+    desc: 1,
+    price:3 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/pin.jpeg" ,
+    name: "Bobby Pin" ,
+    desc: 1,
+    price: 0.10 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/dog.jpeg" ,
+    name: "Dog" ,
+    desc: 1,
+    price: 50 ,
+    qty:0
+    } ,
+
+    {imgurl:"img/ants.jpg" ,
+    name: "Ant colony with a queen" ,
+    desc: 1,
+    price: 30,
+    qty:0
+    } ,
+
+    {imgurl:"img/bag.jpeg" ,
+    name: "Jackie Crocodile bag" ,
+    desc: 1,
+    price: 37000,
+    qty:0
+    } ,
+]   
+
+var i = 0;
+var tag="";
+for(var n=0;n<arr.length/3;n++){
+   tag+= `<div class="row pt-5">`
+    for(var j=0; j<3; j++){
+        
+        tag+=`<div class="col-sm">
+                                <div class="card" style="width: 20rem; line-height: 70%;  ">
+                                    <img src="${arr[i].imgurl}"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body"  id="${i}">
+                                        <h5 id="15" class="card-title">${arr[i].name}</h5>
+                                        <p  id="14" class="desc "></p>
+                                        <h2 id="13" class="card-text">$${arr[i].price}</h2>
+                                        <div id="12" class="btn-group">
+                                            <button type="button" onclick="buy(this)"
+                                                class="btn btn-outline-success btn-sm btn-outline-secondary btn-buy" style="outline: none;">Buy</button>
+                                            <button  type="button" onclick="sell(this)" name="sell"
+                                                class="btn btn-outline-danger btn-sm btn-outline-secondary btn-sell">Sell</button>
+                                        </div>
+                                        <input class="input" id="input" oninput="update_qty(this)" type="number" class="form-control form-control-sm d-inline" placeholder="quantity"
+                                            name="text1" style="width: 80px;" value='' min="0" >
+                                    </div>
+                                </div>
+                        </div>`
+                
+        i++;
+    }
+
+    tag+=`</div>`
+}
+ 
+var container= document.getElementById("container").innerHTML= tag;
+
+</script>
+
+
+<script>
+avatar = localStorage['img'];
+name = localStorage['name'];
+const balance= localStorage['bal']; 
+
+document.getElementById('userAvatar').src =`img/${avatar}.png`;
+document.getElementById('username').innerHTML =`${name} has`;
+//document.getElementById().innerHTML = avatar;
+
+var bal=   balance;
+
+progressBar();
+
+//diable qty input
+var input= [].slice.call(document.getElementsByClassName("input"));
+input.map(x => (x.disabled = true));
+
+//disable sell:
+var sell_butts = [].slice.call(document.getElementsByClassName("btn-sell"));
+var buy_butts = [].slice.call(document.getElementsByClassName("btn-buy"));
+
+
+//Disabling sell at the start
+sell_butts.map(x => (x.disabled = true))
+button_state();
+
+function button_state(){
+
+    var sell_butts = [].slice.call(document.getElementsByClassName("btn-sell"));
+    var buy_butts = [].slice.call(document.getElementsByClassName("btn-buy"));
+
+    //Check if sell is valid for card
+    sell_butts.map(x => {
+        x.disabled = arr[x.parentNode.parentNode.id].qty < 1 ? true : false
+        })
+
+    //Check if buy is valid for card
+    buy_butts.map(x => {
+        x.disabled = arr[x.parentNode.parentNode.id].price > bal ? true : false
+        })
+    
+}
+
+//reset PB:
+document.getElementById("amount").innerHTML="$"+bal;
+
+//BUY()
+function buy(element){
+    var i=Number(element.parentNode.parentNode.id);
+    arr[i].qty +=1 ;
+    bal -= arr[i].price;
+    document.getElementById("amount").innerHTML="$"+bal.toFixed(2); ;
+    //update qty box
+    element.parentNode.parentNode.children[4].value=arr[i].qty;
+    //enable sell:
+    element.parentNode.parentNode.children[3].children[1].disabled = false;
+    progressBar();
+    button_state();
+}
+
+//SELL()
+function sell(element){
+    var i=Number(element.parentNode.parentNode.id);
+    arr[i].qty -= 1 ;
+    bal += arr[i].price;
+    document.getElementById("amount").innerHTML="$"+bal.toFixed(2); ;
+    //update qty box
+    element.parentNode.parentNode.children[4].value=arr[i].qty;
+    progressBar();
+    button_state();
+}
+
+
+//Progress Bar:
+function progressBar(){
+    var percent= (bal/balance)*100;
+    document.getElementById("pb").style.width=percent+"%";
+    if(percent<=10){
+        document.getElementById("pb").style.backgroundColor="red"; 
+    }else if(percent<=30){
+        document.getElementById("pb").style.backgroundColor="orange"; 
+    }else if(percent>30){
+        document.getElementById("pb").style.backgroundColor="green";
+    }
+    
+}
+
+//Updating Quantity
+function update_qty(element){
+    setMax();
+    arr[element.parentNode.id].qty = element.value;
+    arr_price = arr.map(x=> x.qty*x.price);
+    sum = arr_price.reduce((acc, curr) => curr + acc)
+    bal = balance - sum;
+    document.getElementById("amount").innerHTML="$"+bal;
+    progressBar();
+    button_state();
+    
+}
+
+function setMax(){
+    const curr_bal=bal;
+    arr.map((x,i) => {
+        
+        ele = document.getElementById(i).children[4]
+        if (ele.value > (curr_bal/x.price)) {
+            console.log(curr_bal, " ", curr_bal/x.price)
+            ele.value = Math.floor(curr_bal/x.price)
+        }
+        })
+        //if (ele.value<0){ele.value = 0 }
+}
+
+
+</script>
+
+</html>
