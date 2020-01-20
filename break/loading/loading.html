@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Draw lines of various width</title>
+</head>
+
+<body>
+    <center><canvas id="DemoCanvas" width="100" height="100"></canvas></center>
+    <script>
+    var canvas = document.getElementById('DemoCanvas');
+    if (canvas.getContext) {
+        var context = canvas.getContext("2d");
+        let array = ['#909090', '#A9A9A9', '#BEBEBE', '#C8C8C8', '#D3D3D3', '#E0E0E0', '#F0F0F0', '#F8F8F8'];
+
+        // let array = ['#787878FF', '#787878D9', '#787878B3', '#78787880', '#78787866', '#78787833', '#7878781A', '#7878780D'];
+
+        let drawLine = () => {
+        	// var context = canvas.getContext("2d");
+        	// if(array[0] == 'red'){
+        	// 	context.clearRect(0,0,canvas.height,canvas.width);
+        	// }
+        	// console.log(array)
+
+            //Line 1
+            context.beginPath();
+            context.moveTo(50, 60);
+            context.lineTo(50, 100);
+            context.lineWidth = 2;
+            context.strokeStyle = array[0];
+            context.stroke();
+
+            //Line 2 
+            context.beginPath();
+            context.moveTo(56.79, 56.79);
+            context.lineTo(84.95, 84.95);
+            context.lineWidth = 2;
+            context.strokeStyle = array[1];
+            context.stroke();
+
+            //Line 3 
+            context.beginPath();
+            context.moveTo(60, 50);
+            context.lineTo(100, 50);
+            context.lineWidth = 2;
+            context.strokeStyle = array[2];
+            context.stroke();
+
+            //Line 4 
+            context.beginPath();
+            context.moveTo(56.11, 43.44);
+            context.lineTo(84.33, 15.03);
+            context.lineWidth = 2;
+            context.strokeStyle = array[3];
+            context.stroke();
+            
+
+            //Line 5 
+            context.beginPath();
+            context.moveTo(50, 40);
+            context.lineTo(50, 0);
+            context.lineWidth = 2;
+            context.strokeStyle = array[4];
+            context.stroke();
+            //Line 6 
+            context.beginPath();
+            context.moveTo(43.06, 42.99);
+            context.lineTo(14.84, 14.62);
+            context.lineWidth = 2;
+            context.strokeStyle = array[5];
+            context.stroke();
+
+
+            
+            //Line 7 
+            context.beginPath();
+            context.moveTo(40, 50);
+            context.lineTo(0, 50);
+            context.lineWidth = 2;
+            context.strokeStyle = array[6];
+            context.stroke();
+            
+            
+            
+            //Line 8 
+            context.beginPath();
+            context.moveTo(43.14, 56.74);
+            context.lineTo(14.47, 84.91);
+            context.lineWidth = 2;
+            context.strokeStyle = array[7];
+            context.stroke();
+
+            let temp = array[0];
+            array.map((x,i) => {
+            	array[i] = array[i+1];
+            })
+			array[array.length-1] = temp;
+
+        }
+
+        // let draw = () => {
+        // 	drawLine();
+        // 	context.clearRect(0,0,100,100)
+        	
+        // }
+
+        setInterval(drawLine, 500);
+
+    }
+    </script>
+</body>
+
+</html>

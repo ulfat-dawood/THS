@@ -68,10 +68,20 @@ html
     script(src='https://kit.fontawesome.com/7ea5b3f3ae.js', crossorigin='anonymous')
 
   body
+    nav.navbar.navbar-expand-sm(style="background-color: #E8E8E8;")
+      .row.container-fluid
+        .nav-item
+          .h3
+            | TO-DO APP
+        .nav-item
+          img(src='http://localhost:2229/images/img.png', width='200px')
+        .nav-item
+          .h3
+            | Logout  
+            i.fa.fa-sign-out(aria-hidden='true')
+    br
     .container
       .row
-        .col-11.mt-1
-          h1 Todo
         .col
           form(action='/tasks/add', method='POST')
             #modalLoginForm.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
@@ -94,7 +104,11 @@ html
                   .modal-footer.d-flex.justify-content-center
                     button.btn.btn-default ADD
           a.btn.btn-default.btn-rounded.mb-4(href='', data-toggle='modal', data-target='#modalLoginForm')
-            i.fas.fa-plus-circle.fa-2x.mt-3
+            i.fas.fa-plus-circle.fa-2x.mt-4
+          .h4.d-inline.pt-4 
+            | ADD TASKS
+          .col-11.mt-1
+          h1 
         table.table.table-hover
           thead.thead-dark
             tr
@@ -108,12 +122,12 @@ html
             tr(style=val[4])
               td
                 form(action='/tasks/done', method='POST')
-                  button.btn.btn-default(name=val[0])
+                  button.btn.btn-default(name=val[0],data-toggle='tooltip', title='MARK DONE')
                     i.fas.fa-check
               td= val[1]
               td= val[2]
               td= val[3]
               td  
                 form(action='/tasks/delete', method='POST')
-                  button.btn.btn-default(name=val[0])
+                  button.btn.btn-default(name=val[0], data-toggle='tooltip', title='REMOVE')
                     i.fas.fa-trash
